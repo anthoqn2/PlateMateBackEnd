@@ -75,5 +75,6 @@ app = FastAPI()
 @app.get("/")
 async def search_Recipe(search):
     return get_Recipes(search)
+@app.get("/Load_Recipe")
 async def load_Saved_Recipe(id):
     return get_Saved_Recipe(id)
