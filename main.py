@@ -3,16 +3,6 @@ import urllib.request
 import urllib.parse
 import json 
 
-def main():
-    #get_Price("Lamb")
-    get_Recipes("lamb")
-
-"""def get_Price(item):
-    #url = "https://api.kroger.com/v1/products?filter.term={" + item + "}&filter.locationId={01400943}"
-    url = "https://api.kroger.com/v1/products?filter.brand=Kroger&filter.term=lamb&filter.locationId=01400943"
-    json_file = get_json_file(url)
-    d = {"Regular Price": json_file["data"][0]["items"][0]["price"]["regular"]}
-    print(d)"""
 
 def get_Saved_Recipe(id):
     url = "https://api.edamam.com/api/recipes/v2/" + id + "?type=public&app_id=6bef399e&app_key=cc4d4b804b9ddc917ba1f15ea28babc4"
@@ -31,6 +21,7 @@ def get_Recipes(search):
         data["list"].append({"recipe" : recipe_name[i], "ingredients": recipe_ingredients[i], "image":recipe_image, "recipe_id":recipe_id[i]})
         i+=1
     return data 
+
 """
 Given a url to the search, return the json_file
 """
@@ -69,10 +60,9 @@ def _create_list(json_file):
 
     return [recipe_name,recipe_ingredients,recipe_id,recipe_image,count]
 
+
 app = FastAPI()
-
-
-@app.get("/")
+@app.get("/Search_Recipe")
 async def search_Recipe(search):
     return get_Recipes(search)
 @app.get("/Load_Recipe")
