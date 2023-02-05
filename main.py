@@ -63,8 +63,8 @@ def _create_list(json_file):
 
 app = FastAPI()
 @app.get("/Search_Recipe")
-async def search_Recipe(search):
+async def searchRecipe(search):
     return get_Recipes(search)
 @app.get("/Load_Recipe")
-async def load_Saved_Recipe(id):
+async def loadSavedRecipe(id):
     return get_Saved_Recipe(id)
